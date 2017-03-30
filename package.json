@@ -1,0 +1,19 @@
+{
+  "name": "sweet.la",
+  "version": "1.0.0",
+  "description": "js.la Dem Sugar!",
+  "scripts": {
+    "start": "hoodie"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "hoodie": "^28.1.0"
+  },
+  "hoodie": {
+    "address": "0.0.0.0",
+    "loglevel": "info",
+    "port": "5555"
+  }
+}
