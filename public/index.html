@@ -58,6 +58,7 @@
 
     <ul></ul>
 
+    <script src="/hoodie/client.js"></script>
     <script>
       const $list = document.querySelector('ul')
       const $form = document.querySelector('form')
@@ -72,12 +73,29 @@
         }
 
         name = name.replace(/(\.js)?$/i, '.js')
-
-        const $item = document.createElement('li')
-        $item.textContent = name
-        $list.appendChild($item)
-        $input.value = ''
+        hoodie.store.add({name})
       })
+
+      hoodie.store.on('change', renderItems)
+      renderItems()
+
+      function renderItems () {
+        // console.log('render items')
+        hoodie.store.findAll().then(docs => {
+          $list.innerHTML = ''
+          docs.forEach((doc) => {
+            const $item = document.createElement('li')
+            $item.textContent = doc.name
+            $list.appendChild($item)
+            $input.value = ''
+          })
+        })
+      }
+
+      hoodie.account.signIn({username: 'foo', password: 'secret'})
+
+      // oops something’s buggin in Hoodie so gotta do this
+      hoodie.store.on('pull', renderItems)
     </script>
   </body>
 </html>

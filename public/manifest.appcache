@@ -1,5 +1,7 @@
 CACHE MANIFEST
-# v1
+# v2
+
+/hoodie/client.js
 
 NETWORK:
 /hoodie
