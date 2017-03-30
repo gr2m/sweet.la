@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+  The line below make the app work offline across all browsers. Use at own risk,
+  see https://github.com/gr2m/appcache-nanny#gotchas
+
+  <html manifest="/manifest.appcache">
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍯.js</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        text-align: center;
+      }
+      html {
+        background: #E8DC6B;
+        color: #0A0B09;
+        font-family: Helvetica, Arial;
+        font-size: 2em;
+        line-height: 1.41;
+      }
+
+      p {
+        font-size: .8em
+      }
+
+      input {
+        font-size: .7em;
+        display: block;
+        width: 100%;
+        padding: .5em;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🍯.js</h1>
+
+    <p>
+      Portland has <strong>Donut.js</strong>,<br>SF has <strong>Waffle.js</strong>.<br>Whatcha got, LA?
+    </p>
+
+    <p>
+      <form action="">
+        <input placeholder="Say something sweet.js ↵">
+      </form>
+    </p>
+
+    <ul></ul>
+
+    <script>
+      const $list = document.querySelector('ul')
+      const $form = document.querySelector('form')
+      const $input = document.querySelector('input')
+
+      $form.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        let name = $input.value.trim().toLowerCase()
+        if (!name) {
+          return
+        }
+
+        name = name.replace(/(\.js)?$/i, '.js')
+
+        const $item = document.createElement('li')
+        $item.textContent = name
+        $list.appendChild($item)
+        $input.value = ''
+      })
+    </script>
+  </body>
+</html>
