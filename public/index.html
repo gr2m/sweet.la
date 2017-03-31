@@ -21,6 +21,7 @@
         font-family: Helvetica, Arial;
         font-size: 2em;
         line-height: 1.41;
+        transition: all 1s ease;
       }
 
       p {
@@ -73,14 +74,14 @@
         }
 
         name = name.replace(/(\.js)?$/i, '.js')
+
         hoodie.store.add({name})
       })
 
       hoodie.store.on('change', renderItems)
-      renderItems()
 
+      renderItems()
       function renderItems () {
-        // console.log('render items')
         hoodie.store.findAll().then(docs => {
           $list.innerHTML = ''
           docs.forEach((doc) => {
@@ -96,6 +97,18 @@
 
       // oops something’s buggin in Hoodie so gotta do this
       hoodie.store.on('pull', renderItems)
+
+      hoodie.connectionStatus.on('disconnect', () => {
+        document.documentElement.style.filter = 'grayscale(100%)'
+        document.documentElement.style.background = '#eee'
+      })
+
+      hoodie.connectionStatus.on('reconnect', () => {
+        document.documentElement.style.filter = 'grayscale(100%)'
+        document.documentElement.style.background = '#E8DC6B'
+      })
+
+      hoodie.connectionStatus.startChecking({interval: 1000})
     </script>
   </body>
 </html>
