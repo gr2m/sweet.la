@@ -15,5 +15,6 @@
     "address": "0.0.0.0",
     "loglevel": "info",
     "port": "5555"
-  }
+  },
+  "repository": "github:gr2m/sweet.la"
 }
